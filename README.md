@@ -8,7 +8,7 @@ Project for course about Apache Camel + Spring Boot
 
 Architecture:
 
-![](https://raw.githubusercontent.com/laissonsilveira/camel-spring-boot-course/doc/camel-architecture.png "Apache Architecture")
+![](https://github.com/laissonsilveira/camel-spring-boot-course/blob/main/doc/camel-architecture.png "Apache Architecture")
 
 * Camel Context
   * Endpoint: Reference to a queue, database or file
