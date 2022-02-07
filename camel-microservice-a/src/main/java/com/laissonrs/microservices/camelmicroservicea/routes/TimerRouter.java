@@ -3,11 +3,11 @@ package com.laissonrs.microservices.camelmicroservicea.routes;
 import com.laissonrs.microservices.camelmicroservicea.beans.GetCurrentTimeBean;
 import com.laissonrs.microservices.camelmicroservicea.components.SimpleLoggingProcessingComponent;
 import com.laissonrs.microservices.camelmicroservicea.processors.SimpleLoggingProcessor;
+
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+// @Component Disable for while
 public class TimerRouter extends RouteBuilder {
 
     @Autowired
@@ -22,6 +22,7 @@ public class TimerRouter extends RouteBuilder {
     @Override
     public void configure() {
         from("timer:first-timer")
+                .routeId("first-timer-id")
                 .log("${body}")// print null
                 .transform().constant("My const message")
                 .log("${body}")//print "My const message"
@@ -39,4 +40,3 @@ public class TimerRouter extends RouteBuilder {
                 .to("log:first-timer");//Exchange[ExchangePattern: InOnly, BodyType: String, Body: Time now is 2022-01-28T17:11:25.267360600]
     }
 }
-

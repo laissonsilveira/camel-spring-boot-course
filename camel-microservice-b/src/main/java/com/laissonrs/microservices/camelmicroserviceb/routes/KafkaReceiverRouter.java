@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ActiveMqReceiverRouter extends RouteBuilder {
+public class KafkaReceiverRouter extends RouteBuilder {
 
     @Autowired
     private CurrencyExchangeProcessor currencyExchangeProcessor;
@@ -20,17 +20,17 @@ public class ActiveMqReceiverRouter extends RouteBuilder {
         // { "id": 1, "from": "BRL", "to": "USD", "conversionMultiple": 5, "value": 10 }
 
         // JSON
-        from("activemq:my-activemq-queue")
+        from("kafka:my-kafka-topic")
                 .unmarshal()
                 .json(JsonLibrary.Jackson, CurrencyExchange.class)
                 .process(currencyExchangeProcessor)
-                .to("log:received-messages-from-active-mq");
+                .to("log:received-messages-from-kafka-topic");
 
-        // XML
-        from("activemq:my-activemq-xml-queue")
-                .unmarshal()
-                .jacksonxml(CurrencyExchange.class)
-                .process(currencyExchangeProcessor)
-                .to("log:received-messages-from-active-xml-mq");
+        // // XML
+        // from("activemq:my-activemq-xml-queue")
+        //         .unmarshal()
+        //         .jacksonxml(CurrencyExchange.class)
+        //         .process(currencyExchangeProcessor)
+        //         .to("log:received-messages-from-active-xml-mq");
     }
 }

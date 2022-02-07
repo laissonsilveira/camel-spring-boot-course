@@ -25,8 +25,29 @@ Architecture:
 
 ## Active MQ 
 
-To use the **Active MQ** 
-
+* add dependency to project:
+  ```xml
+  <dependency>
+    <groupId>org.apache.camel.springboot</groupId>
+    <artifactId>camel-activemq-starter</artifactId>
+    <version>${camel.version}</version>
+  </dependency>
+  ```
 * run `docker run -p 61616:61616 -p 8161:8161 rmohr/activemq`
 * add to file **_application.properties_**: `spring.activemq.broker-url=tcp://localhost:61616`
 * interface access: `http://localhost:8161` with user/password -> `admin/admin`
+
+## Kafka
+
+* add dependency to project:
+  ```xml
+  <dependency>
+    <groupId>org.apache.camel.springboot</groupId>
+    <artifactId>camel-kafka-starter</artifactId>
+    <version>${camel.version}</version>
+  </dependency>
+  ```
+* use the `./docker-compose.yaml` file
+* run `docker-compose up` on docker-compose directory
+* add to file **_application.properties_**: `camel.component.kafka.brokers=localhost:9092`
+* edit `/etc/hosts` and add unknown host created. Ex: `127.0.0.1   458077ddabfc`
