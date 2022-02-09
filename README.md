@@ -4,6 +4,15 @@ Project for course about Apache Camel + Spring Boot
 
 > Camel is an Open Source integration framework that empowers you to quickly and easily integrate various systems consuming or producing data.
 
+| Topic Reference | Reference |
+|---|---|
+| Why Camel? | https://camel.apache.org/manual/latest/faq/why-the-name-camel.html |
+| Camel Examples | https://github.com/apache/camel-examples/tree/master/examples |
+| Camel Spring Boot Configuration | https://camel.apache.org/camel-spring-boot/latest/spring-boot.html |
+| Complete Spring Boot Starters List | https://camel.apache.org/camel-spring-boot/latest/list.html |
+| Camel Spring Boot Examples | https://github.com/apache/camel-spring-boot-examples |
+| Enterprise Integration Patterns | https://camel.apache.org/components/latest/eips/enterprise-integrationpatterns.html |
+
 ## Apache Camel
 
 Architecture:
