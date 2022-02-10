@@ -1,13 +1,8 @@
-package com.laissonrs.microservices.camelmicroserviceb;
+package com.laissonrs.microservices.camelmicroserviceb.dto;
 
 import java.math.BigDecimal;
 
-/**
- * @author Laisson R. Silveira
- * laisson.r.silveira@gmail.com
- * 02/07/22
- **/
-public class CurrencyExchange {
+public class CurrencyExchangeRequest {
 
     private Long id;
     private String from;
@@ -15,10 +10,7 @@ public class CurrencyExchange {
     private BigDecimal conversionMultiple;
     private BigDecimal value;
 
-    public CurrencyExchange() {
-    }
-
-    public CurrencyExchange(final Long id, final String from, final String to, final BigDecimal conversionMultiple, final BigDecimal value) {
+    public CurrencyExchangeRequest(final Long id, final String from, final String to, final BigDecimal conversionMultiple, final BigDecimal value) {
         this.id = id;
         this.from = from;
         this.to = to;

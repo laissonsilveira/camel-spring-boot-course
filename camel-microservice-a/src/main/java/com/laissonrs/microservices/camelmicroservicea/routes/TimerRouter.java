@@ -6,8 +6,9 @@ import com.laissonrs.microservices.camelmicroservicea.processors.SimpleLoggingPr
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-// @Component Disable for while
+@Component
 public class TimerRouter extends RouteBuilder {
 
     @Autowired
@@ -22,7 +23,8 @@ public class TimerRouter extends RouteBuilder {
     @Override
     public void configure() {
         from("timer:first-timer")
-                .routeId("first-timer-id")
+                .routeId("Timer-Route")
+                .noAutoStartup()
                 .log("${body}")// print null
                 .transform().constant("My const message")
                 .log("${body}")//print "My const message"

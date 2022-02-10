@@ -1,6 +1,6 @@
 package com.laissonrs.microservices.camelmicroserviceb.routes;
 
-import com.laissonrs.microservices.camelmicroserviceb.CurrencyExchange;
+import com.laissonrs.microservices.camelmicroserviceb.dto.CurrencyExchangeRequest;
 import com.laissonrs.microservices.camelmicroserviceb.processors.CurrencyExchangeProcessor;
 
 import org.apache.camel.builder.RouteBuilder;
@@ -8,7 +8,7 @@ import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+// @Component
 public class KafkaReceiverRouter extends RouteBuilder {
 
     @Autowired
@@ -22,15 +22,15 @@ public class KafkaReceiverRouter extends RouteBuilder {
         // JSON
         from("kafka:my-kafka-topic")
                 .unmarshal()
-                .json(JsonLibrary.Jackson, CurrencyExchange.class)
+                .json(JsonLibrary.Jackson, CurrencyExchangeRequest.class)
                 .process(currencyExchangeProcessor)
                 .to("log:received-messages-from-kafka-topic");
 
         // // XML
-        // from("activemq:my-activemq-xml-queue")
-        //         .unmarshal()
-        //         .jacksonxml(CurrencyExchange.class)
-        //         .process(currencyExchangeProcessor)
-        //         .to("log:received-messages-from-active-xml-mq");
+        from("activemq:my-activemq-xml-queue")
+                .unmarshal()
+                .jacksonxml(CurrencyExchangeRequest.class)
+                .process(currencyExchangeProcessor)
+                .to("log:received-messages-from-active-xml-mq");
     }
 }

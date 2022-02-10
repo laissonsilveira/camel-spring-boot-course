@@ -1,6 +1,8 @@
 # camel-spring-boot-course
 
-Project for course about Apache Camel + Spring Boot
+Project for course about Apache Camel + Spring Boot.
+
+OBS: In case that don't work, check routes with `.noAutoStartup()` pipeline or with `@Component` commented 
 
 > Camel is an Open Source integration framework that empowers you to quickly and easily integrate various systems consuming or producing data.
 
@@ -32,7 +34,11 @@ Architecture:
   * Message Exchange Pattern (MEP): InOnly/InOut
   * Input Message and (optional) Output Message
 
-## Active MQ 
+## Integration Examples
+
+Some examples
+
+### Active MQ 
 
 * add dependency to project:
   ```xml
@@ -46,7 +52,7 @@ Architecture:
 * add to file **_application.properties_**: `spring.activemq.broker-url=tcp://localhost:61616`
 * interface access: `http://localhost:8161` with user/password -> `admin/admin`
 
-## Kafka
+### Kafka
 
 * add dependency to project:
   ```xml
@@ -60,3 +66,36 @@ Architecture:
 * run `docker-compose up` on docker-compose directory
 * add to file **_application.properties_**: `camel.component.kafka.brokers=localhost:9092`
 * edit `/etc/hosts` and add unknown host created. Ex: `127.0.0.1   458077ddabfc`
+
+### Rest API
+* 
+* add dependency to project:
+  ```xml
+  <dependency>
+    <groupId>org.apache.camel.springboot</groupId>
+    <artifactId>camel-http-starter</artifactId>
+    <version>${camel.version}</version>
+  </dependency>
+  ```
+* create class with `@RestController` in service B and add config `restConfiguration().host("localhost").port(8000);`
+* create class `RestApiRoute.java` in service A with `to("rest:METHOD:/PATH")`
+
+# Examples Routes / Controllers / Processors / Beans / Strategies
+
+**Microservice A**
+
+* [ActiveMqSenderRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/ActiveMqSenderRouter.java)
+* [AggregateRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/AggregateRouter.java)
+* [DynamicRoutingRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/DynamicRoutingRouter.java)
+* [FileRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/FileRouter.java)
+* [KafkaSenderRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/KafkaSenderRouter.java)
+* [MulticastRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/MulticastRouter.java)
+* [RestApiRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/RestApiRouter.java)
+* [RoutingSlipRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/RoutingSlipRouter.java)
+* [SplitRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/SplitRouter.java)
+* [TimerRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-a/src/main/java/com/laissonrs/microservices/camelmicroservicea/routes/TimerRouter.java)
+
+**Microservice B**
+
+* [ActiveMqReceiverRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-b/src/main/java/com/laissonrs/microservices/camelmicroserviceb/routes/ActiveMqReceiverRouter.java)
+* [KafkaReceiverRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-b/src/main/java/com/laissonrs/microservices/camelmicroserviceb/routes/KafkaReceiverRouter.java)

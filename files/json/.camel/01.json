@@ -2,5 +2,6 @@
   "id": 1,
   "from": "BRL",
   "to": "USD",
-  "conversionMultiple": 5
+  "conversionMultiple": 5,
+  "value": 10
 }
