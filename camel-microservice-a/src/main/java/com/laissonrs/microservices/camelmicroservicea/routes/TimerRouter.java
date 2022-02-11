@@ -22,7 +22,7 @@ public class TimerRouter extends RouteBuilder {
 
     @Override
     public void configure() {
-        from("timer:first-timer")
+        from("timer:first-timer?period={{timer.period}}")
                 .routeId("Timer-Route")
                 .noAutoStartup()
                 .log("${body}")// print null

@@ -99,3 +99,15 @@ Some examples
 
 * [ActiveMqReceiverRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-b/src/main/java/com/laissonrs/microservices/camelmicroserviceb/routes/ActiveMqReceiverRouter.java)
 * [KafkaReceiverRouter](https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-b/src/main/java/com/laissonrs/microservices/camelmicroserviceb/routes/KafkaReceiverRouter.java)
+
+# Creating Key Store
+
+Command to create:
+
+```shell
+keytool -genseckey -alias myDesKey -keypass someKeyPassword -keystore myDesKey.jceks -storepass someKeystorePassword -v -storetype JCEKS -keyalg DES
+```
+
+OBS: put `myDesKey.jceks` in your `src/main/resources` directory
+
+Crypto data class: [MyCryptoData](`https://laissonsilveira.github.io/camel-spring-boot-course/camel-microservice-lib/src/main/java/com/laissonrs/microservices/utils/MyCryptoData.java`)

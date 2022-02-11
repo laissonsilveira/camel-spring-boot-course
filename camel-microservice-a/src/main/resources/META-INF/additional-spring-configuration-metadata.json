@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "timer.period",
+      "type": "java.lang.String",
+      "description": "Description for timer.period."
+    }
+  ]
+}

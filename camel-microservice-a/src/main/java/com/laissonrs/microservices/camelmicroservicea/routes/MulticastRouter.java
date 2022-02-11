@@ -8,7 +8,7 @@ public class MulticastRouter extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("timer:myMulticast?period=35000")
+        from("timer:myMulticast?period={{timer.period}}")
                 .noAutoStartup()
                 .multicast()
                 .to("log:something01", "log:something02", "log:something03");

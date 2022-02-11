@@ -13,7 +13,7 @@ public class RestApiRouter extends RouteBuilder {
 
         String from = "BRL";
         String to = "USD";
-        from("timer:rest-api-consumer?period=10000")
+        from("timer:rest-api-consumer?period={{timer.period}}")
                 .routeId("Rest-API-Consumer-Route")
                 .noAutoStartup()
                 .setHeader("from", () -> from)

@@ -14,8 +14,9 @@ public class DynamicRoutingRouter extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("timer:dynamic-routing?period=35000")
+        from("timer:dynamic-routing?period={{timer.period}}")
                 .routeId("Dynamic-Routing-Route")
+                .noAutoStartup()
                 .dynamicRouter(method(dynamicRouterBean));
 
         from("direct:endpoint04")

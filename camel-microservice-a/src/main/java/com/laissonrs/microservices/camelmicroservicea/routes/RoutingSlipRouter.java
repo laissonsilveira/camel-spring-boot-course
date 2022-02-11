@@ -8,7 +8,7 @@ public class RoutingSlipRouter extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("timer:routing-slip?period=35000")
+        from("timer:routing-slip?period={{timer.period}}")
                 .routeId("Routing-Slip-Route")
                 .noAutoStartup()
                 .transform().constant("Message test to Routing Slip")
